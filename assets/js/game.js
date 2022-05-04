@@ -16,21 +16,24 @@ var fight = function (enemyName) {
 
     if (promptFight === "fight" || promptFight === "FIGHT") {
 
-        enemyHealth = enemyHealth - playerAttack;
-        console.log(playerName + " attacked " + enemyNames + ". " + enemyName + " now has " + enemyHealth + " health remaining.");
-        if (enemyHealth <= 0) {
-            window.alert(enemyName + " has died!");
-        } else {
-            window.alert(enemyName + " still has " + enemyHealth + " health left.");
+        while (enemyHealth > 0) {
+            enemyHealth = enemyHealth - playerAttack;
+            console.log(playerName + " attacked " + enemyNames + ". " + enemyName + " now has " + enemyHealth + " health remaining.");
+            if (enemyHealth <= 0) {
+                window.alert(enemyName + " has died!");
+            } else {
+                window.alert(enemyName + " still has " + enemyHealth + " health left.");
+            }
+
+            playerHealth = playerHealth - enemyattack;
+            console.log(enemyName + " attacked " + playerName + ". " + playerName + " now has " + playerHealth + " health remaining.")
+            if (playerHealth <= 0) {
+                window.alert(playerName + " has died!");
+            } else {
+                window.alert(playerName + " still has " + playerHealth + " health left.");
+            }
         }
 
-        playerHealth = playerHealth - enemyattack;
-        console.log(enemyName + " attacked " + playerName + ". " + playerName + " now has " + playerHealth + " health remaining.")
-        if (playerHealth <= 0) {
-            window.alert(playerName + " has died!");
-        } else {
-            window.alert(playerName + " still has " + playerHealth + " health left.");
-        }
     } else if (promptFight === "skip" || promptFight === "SKIP") {
         var confirmSkip = window.confirm("Are you sure you'd like to quit?");
 
@@ -47,7 +50,9 @@ var fight = function (enemyName) {
 }
 
 for (var i = 0; i < enemyNames.length; i++) {
-    fight(enemyNames[i]);
+    var pickedEnemyName = enemyNames[i];
+    enemyHealth = 50;
+    fight(pickedEnemyName);
 }
 
 // fight();
